@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Carusel Framework</title>
+	<!-- Fonts -->
+	<link href="https://fonts.googleapis.com/css?family=Nunito+Sans:400,700|Roboto:400,700" rel="stylesheet">
+	<link href="https://unpkg.com/ionicons@4.5.5/dist/css/ionicons.min.css" rel="stylesheet">
+
+	<!-- Style -->
+
+		<!--   FOR VERTICAL SLIDE SHOW -->
+	<link rel="stylesheet" href="css/carusel_vertical.css">
+
+		<!--   FOR HORIZONTAL SLIDE SHOW -->
+	<!--<link rel="stylesheet" href="css/carusel_horizontal.css">-->
+
+
+	<!-- JQuery -->
+	<script src="https://code.jquery.com/jquery-3.4.0.min.js"></script>
+	<script>
+		/* My jQuery slide show
+
+		- slides change every 2 sec, click on Pause - stops,
+		- click on 1-2-3 to pick a slide,
+		- click on Continue buttom to continue slide show
+		*/
+
+
+        $(function(){
+			$('.slideShow > li:gt(0)').hide();
+
+			var numSlides = $('.slideShow > li').length;
+
+            var interval = null;
+            var curSlide = 1;
+			var nextSlide = 2;
+
+
+            /* slide function: funSlide */
+
+            var funSlide = function() {
+                $('.slideShow > li:nth-of-type(' + curSlide + ')').fadeOut(200 , function() {
+
+                    $('.slideShow > li:nth-of-type(' + nextSlide + ')').fadeIn(200);
+                    curSlide = nextSlide;
+					if (nextSlide == numSlides) {
+                         nextSlide = 1;
+                    } else {
+                         nextSlide = curSlide + 1;
+                    }; // end if-else
+				});
+             }; // end funSlide function
+
+            /* interval function */
+
+            var startInt = function() {
+                interval = setInterval(function(){
+                    funSlide();
+                    }, 3000); // end setInterval
+                };
+
+			/* start Interval - start slideShow */
+            startInt();
+
+            /* slide navigation event listener */
+
+            $( "#slideNav ul li").on({
+                    "click": function() {
+						if ($(this).attr("class") !== 'cont') {
+                        	clearInterval(interval); /* stop slide show */
+							if ($(this).attr("class") !== 'pause') {
+								nextSlide = Number($(this).text());
+                                funSlide();
+							}
+						} else {  /* continue slide */
+							startInt();
+						}
+                     }
+                   /* "mouseover": function() {
+                       .. same as on click or could be different
+                     }*/
+            }); // end 1-2-3 slideNav menu event handler
+
+	     }) // end doc ready
+
+	</script>
+</head>
+<body>
+  <main>
+    <section id="carusel">
+         <h3> This is a Slide Show </h3>
+         <article id="samples">
+				<!--images downloaded from  https://www.pexels.com/search/food/-->
+				<!--images have to be same size/proportion for better result -->
+				<ul class="slideShow">
+					<li>
+					    <ul>
+					        <li>
+					            <img src="images/almonds-berries-blackberries-1099680.jpg" alt="Almond Berries">
+					        </li>
+
+					        <li>
+					            <img src="images/blur-close-up-dairy-product-376464.jpg" alt="Dairy Product">
+					        </li>
+					    </ul>
+					</li>
+					<li>
+					    <ul>
+					        <li>
+					            <img src="images/bread-delicious-dinner-1603901.jpg" alt="Bread Dinner">
+					        </li>
+
+					        <li>
+					            <img src="images/buffet-chicken-delicious-5938.jpg" alt="Buffet Chicken">
+					        </li>
+					    </ul>
+					</li>
+					<li>
+					    <ul>
+					        <li>
+					            <img src="images/burger-chips-dinner-70497.jpg" alt="Burger Chips">
+					        </li>
+
+					        <li>
+					            <img src="images/cheese-close-up-crust-803290.jpg" alt="Cheese Pizza">
+					        </li>
+					    </ul>
+					</li>
+				</ul>
+
+		    </article>
+		    <article id="slideNav">
+						 <ul >
+					    	<li class="pause"><i class="icon ion-md-pause"></i></li>
+						    <li>1</li>
+						    <li>2</li>
+						    <li>3</li>
+		        	        <li class="cont"><i class="icon ion-md-arrow-dropright-circle"></i></li>
+			        	</ul>
+            </article>
+    </section>
+  </main>
+
+</body>
+</html>

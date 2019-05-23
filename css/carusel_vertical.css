@@ -1,0 +1,85 @@
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+section, article, main, aside, footer, nav, video, audio, header, figure, picture {
+    display: block;
+}
+
+/* Slide Show */
+
+h3 {
+	background-color:  #7b8f86;
+	color: #fff;
+	text-align: center;
+	margin: 2% 0;
+	padding: 0.3em;
+	font-size: 1.4em;
+}
+
+ul {
+	list-style: none;
+}
+
+section#carusel {
+	width: 90%;   /*  Define Vertical carusel width here */
+	margin: 2% auto;
+}
+
+#samples img {
+	max-width: 100%;
+	height: auto;
+	border: solid 5px #e7e3d4;
+}
+
+article#samples {
+	margin: 20px auto;
+	padding: 2%;
+	border: solid 3px #7b8f86;
+}
+
+#samples ul ul li {
+	display: block;
+	width: 100%;
+}
+
+#slideNav {
+	text-align: center;
+}
+
+article#slideNav {
+	margin: 0;
+	padding: 0;
+	border: none;
+}
+
+#slideNav ul {
+	/*width: 100% !important;*/
+	margin: 0;
+	padding: 8px 0;
+	background-color: rgba(231, 227, 212, 0.6); /*#e7e3d4;*/
+}
+#slideNav li {
+    display: inline-block;
+    padding: 2px 5px;
+    margin: 3px;
+    background-color: #7b8f86;
+    color: white;
+}
+
+
+/* Media Quiery */
+
+@media screen and (min-width: 450px) {
+	section#carusel {
+	width: 50%;
+}
+
+@media screen and (min-width: 730px) {
+
+
+}
+@media screen and (min-width: 850px) {
+
+}
